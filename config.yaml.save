@@ -1,0 +1,114 @@
+accessControl:
+  salt: xh9LUsPqFMhKbePxbHFEV8HWISDMcnIg
+api:
+  key: 130BF1BDD76C4CE7B3145A2B0177CF61
+appearance: {}
+feature: {}
+gcodeViewer: {}
+plugins:
+  discovery:
+    httpPassword: null
+    httpUsername: null
+    model:
+      description: null
+      name: null
+      number: null
+      serial: null
+      url: null
+      vendor: null
+      vendorUrl: null
+    pathPrefix: null
+    publicHost: null
+    publicPort: null
+    upnpUuid: 179df970-395b-4085-a61a-b61111103298
+    zeroConf: []
+printerParameters: {}
+printerProfiles:
+  defaultProfile:
+    axes:
+      e:
+        inverted: false
+        speed: 3600
+      x:
+        inverted: false
+        speed: 18000
+      y:
+        inverted: false
+        speed: 18000
+      z:
+        inverted: false
+        speed: 18000
+    color: blue
+    extruder:
+      count: 1
+      nozzleDiameter: 0.5
+      offsets:
+      - - 0.0
+        - 0.0
+    heatedBed: true
+    id: _default
+    model: Delta
+    name: Rostock
+    volume:
+      depth: 240.0
+      formFactor: circular
+      height: 240.0
+      width: 240.0
+serial:
+  autoconnect: true
+  baudrate: 250000
+  port: /dev/ttyACM0
+  timeout: {}
+server:
+  firstRun: false
+  secretKey: PPAIyzqOPvsL5W92vjLlUZhpjetFDtHk
+system:
+  actions:
+  - action: copy
+    command: /home/pi/scripts/SmoothieUpload.sh
+    confirm: false
+    name: Copy to SD
+  - action: shutdown
+    command: sudo shutdown -h now
+    confirm: You are about to shutdown the system.
+    name: Shutdown
+  - action: reboot
+    command: sudo shutdown -r now
+    confirm: You are about to reboot the system
+    name: Reboot
+  - action: restart
+    command: sudo service octoprint restart
+    confirm: You are about to restart OctoPrint
+    name: Restart OctoPrint
+  - action: streamon
+    command: /home/pi/scripts/webcam start
+    confirm: false
+    name: Start video stream
+  - action: streamoff
+    command: /home/pi/scripts/webcam stop
+    confirm: false
+    name: Stop video stream
+#events:
+ # enabled: True
+  #subscriptions:
+  -# event:MovieDone
+    command: 'youtube-upload --email="cupricreki@gmail.com" --password="Flatipti)(8" 
+    --title="Timelapse: {gcode}" --description="Timelapse of {gcode}, printed and 
+    recorded via OctoPrint" --category="Tech" --keywords=OctoPrint "{movie}" --private'
+    type: system
+  - event: PrintDone
+    command: curl -o /tmp/printDone.jpg "http://localhost:8080/?action=snapshot" 
+      && mpack -s "Print of {file} finished" /tmp/printDone.jpg cupricreki@gmail.com
+    type: system
+
+temperature: {}
+webcam:
+  ffmpeg: /usr/bin/avconv
+  snapshot: http://127.0.0.1:8080/?action=snapshot
+  stream: http://192.168.0.27:8080/?action=stream
+  timelapse:
+    fps: 25
+    options: {}
+    postRoll: 2
+    type: zchange
+  watermark: false
