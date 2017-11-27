@@ -25,8 +25,16 @@ controls:
     - M80
     - M104 S190
     - M140 S60
+    - M108 S0
     - ''
     name: PLA (60/190)
+    type: commands
+  - commands:
+    - M104 S0
+    - M140 S0
+    - M108 S0
+    - ''
+    name: Disable all heaters
     type: commands
   layout: vertical
   name: Preheat
@@ -112,6 +120,12 @@ controls:
     - G1 X-71 Y71 F18000
     - G1 Z0 F1000
     name: To XZ
+    type: commands
+  - commands:
+    - G28
+    - G1 Z50 F18000
+    - G1 Y-137 F8000
+    name: To Service Position
     type: commands
   layout: vertical
   name: Macros
