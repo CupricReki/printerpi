@@ -1,0 +1,8 @@
+pi:
+  active: true
+  apikey: null
+  password: c745cf65a6ffd6c163b40b837f8082c75c3feea7bd42b77ae3179d43675ed91418c2b4f3f1c2141ed1edf55de68266151223728acdf099c2a9a169649de59796
+  roles:
+  - user
+  - admin
+  settings: {}
