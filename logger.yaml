@@ -1,5 +1,0 @@
-logger:
-  octoprint.events:
-    level: DEBUG
-  octoprint.filemanager:
-    level: DEBUG
