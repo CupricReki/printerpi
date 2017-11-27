@@ -1,0 +1,46 @@
+accessControl:
+  salt: ug87NcA8mp89GgGE74rTS9MDgGqKuIwj
+api:
+  key: 353505901D404897960405B3C488DFEA
+plugins:
+  announcements:
+    _config_version: 1
+    channels:
+      _blog:
+        read_until: 1500983100
+      _important:
+        read_until: 1509547500
+      _octopi:
+        read_until: 1499253000
+      _plugins:
+        read_until: 1509494400
+      _releases:
+        read_until: 1508162400
+  cura:
+    cura_engine: /usr/local/bin/cura_engine
+  discovery:
+    publicPort: 80
+    upnpUuid: d65b39e0-08c0-4345-abe2-537c7bd641d1
+  softwareupdate:
+    _config_version: 5
+    checks:
+      octoprint:
+        update_folder: /home/pi/OctoPrint
+printerProfiles:
+  default: _default
+server:
+  commands:
+    serverRestartCommand: sudo service octoprint restart
+    systemRestartCommand: sudo shutdown -r now
+    systemShutdownCommand: sudo shutdown -h now
+  firstRun: false
+  onlineCheck:
+    enabled: true
+  secretKey: wMnc8NFhilB1sCOfwypQGAc2H3j3xUlC
+  seenWizards:
+    corewizard: 1
+    cura: null
+webcam:
+  ffmpeg: /usr/bin/avconv
+  snapshot: http://127.0.0.1:8080/?action=snapshot
+  stream: /webcam/?action=stream

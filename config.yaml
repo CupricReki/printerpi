@@ -1,0 +1,380 @@
+accessControl:
+  enabled: false
+api:
+  allowCrossOrigin: true
+  key: 56D0FF611C184738B2CAE37CE1F7446F
+appearance:
+  name: Rostock Max
+controls:
+- children:
+  - commands:
+    - M80
+    - M104 S180
+    - M140 S115
+    - M108 S35
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    name: 'ABS - T1:180C B:115C E:35C '
+    type: commands
+  - commands:
+    - M80
+    - M104 S190
+    - M140 S60
+    - ''
+    name: PLA (60/190)
+    type: commands
+  layout: vertical
+  name: Preheat
+  type: section
+- children:
+  - commands:
+    - G28
+    - G91
+    - G1 Z-350 F 12000
+    - G90
+    name: Move down 350mm
+    type: commands
+  - commands:
+    - G1 Z300 F18000
+    - G28
+    - G1 Z10 X0 Y0 F18000
+    - G1 Z0 X0 Y0 F4000
+    name: Home to Z0
+    type: commands
+  - commands:
+    - G1 Z300 F18000
+    - G28 ; Home All Axes
+    - G1 Z40 X0 Y0 F18000
+    - G1 Z10 X0 Y0 F4000
+    name: Home to Z10
+    type: commands
+  - commands:
+    - G1 Z10 F6000
+    - G1 Z10 X0 Y0 F18000
+    - G1 Z0 F1000
+    name: NOHome to Z0
+    type: commands
+  - commands:
+    - G1 Z10 F6000
+    - G1 Z10 X0 Y0 F18000
+    - ''
+    name: NOHome to Z10
+  - commands:
+    - M306 Z0
+    - ''
+    - ''
+    name: Set Current to Z0.00
+    type: commands
+  - command: M306 Z0.05
+    name: Set Current to Z+0.05
+  - command: M306 Z-0.05
+    name: Set current to Z-0.05
+  - commands:
+    - G1 Z10 F6000
+    - G1 X0 Y90 F18000
+    - G1 Z0 F1000
+    - ''
+    name: NOHome X
+    type: commands
+  - commands:
+    - G1 Z10 F6000
+    - G1 X71 Y71 F18000
+    - G1 Z0 F1000
+    name: To XY
+    type: commands
+  - commands:
+    - G1 Z10 F6000
+    - G1 X77.94 Y-45 F18000
+    - G1 Z0 F1000
+    - ''
+    name: NOHome Y
+    type: commands
+  - commands:
+    - G1 Z10 F6000
+    - G1 X0 Y-100 F18000
+    - G1 Z0 F1000
+    name: To YZ
+    type: commands
+  - commands:
+    - G1 Z10 F6000
+    - G1 X-77.94 Y-45 F18000
+    - G1 Z0 F1000
+    - ''
+    name: NOHome Z
+    type: commands
+  - commands:
+    - G1 Z10 F6000
+    - G1 X-71 Y71 F18000
+    - G1 Z0 F1000
+    name: To XZ
+    type: commands
+  layout: vertical
+  name: Macros
+  type: section
+- children:
+  - command: M108 S%(temp)s
+    input:
+    - default: 35
+      name: Speed (0-50)
+      parameter: temp
+      slider: false
+    name: Enable Heater
+    type: parametric_command
+  - command: M108 S0
+    name: Disable Heater
+    type: command
+  layout: vertical
+  name: Enclosure
+  type: section
+- children:
+  - commands:
+    - M80
+    name: P/S ON
+    type: commands
+  - commands:
+    - M81
+    name: P/S OFF
+    type: commands
+  layout: vertical
+  name: Power Supply
+  type: section
+- children:
+  - command: M106 S%(speed)s
+    input:
+    - default: 255
+      name: Speed (0-255)
+      parameter: speed
+      slider: false
+    name: Enable Fan
+    type: parametric_command
+  - command: M107
+    name: Disable Fan
+    type: command
+  layout: vertical
+  name: Fan
+  type: section
+events:
+  enabled: true
+  subscriptions:
+  - command: logger 'Printer got disconnected'
+    event: Disconnected
+feature:
+  repetierTargetTemp: true
+folder:
+  timelapse_tmp: /home/pi/.octoprint/timelapse_tmp
+gcodeViewer: {}
+plugins:
+  _disabled:
+  - cura
+  - virtual_printer
+  announcements:
+    _config_version: 1
+    channels:
+      _blog:
+        read_until: 1511174700
+      _important:
+        read_until: 1509547500
+      _octopi:
+        read_until: 1499253000
+      _plugins:
+        read_until: 1511481600
+      _releases:
+        read_until: 1508162400
+  cura:
+    _config_version: null
+    cura_engine: /home/pi/CuraEngine/build
+    debug_logging: false
+    default_profile: null
+  discovery:
+    model:
+      description: Rostock Awesome
+      name: Rostock Max V2 - modified
+      number: 1
+      serial: 1
+      url: http://seemecnc.com/products/rostock-max-complete-kit
+      vendor: Mechanical Solutions LLC
+      vendorUrl: http://mechllc.com
+    upnpUuid: 179df970-395b-4085-a61a-b61111103298
+  softwareupdate:
+    _config_version: 5
+    check_providers:
+      GcodeEditor: GcodeEditor
+      autoselect: autoselect
+      navbartemp: navbartemp
+      printhistory: printhistory
+      telegram: telegram
+      themeify: themeify
+    checks:
+      octoprint:
+        checkout_folder: /home/pi/Octoprint
+        prerelease: false
+        prerelease_channel: null
+  telegram:
+    _config_version: 3
+    chats:
+      '-126682409':
+        accept_commands: true
+        allow_users: true
+        commands:
+          /abort: false
+          /con: false
+          /ctrl: false
+          /dontshutup: false
+          /files: false
+          /help: false
+          /print: false
+          /settings: false
+          /shutup: false
+          /status: true
+          /sys: false
+          /test: false
+          /togglepause: false
+          /tune: false
+          /upload: false
+          /user: false
+          'No': false
+          'Yes': false
+        id: '-126682409'
+        image: /plugin/telegram/img/static/group.jpg?1511715622716
+        new: false
+        newUsr: false
+        notifications:
+          PrintDone: false
+          PrintFailed: false
+          PrintPaused: false
+          PrintResumed: false
+          PrintStarted: false
+          PrinterShutdown: false
+          PrinterStart: false
+          StatusNotPrinting: false
+          StatusPrinting: false
+          ZChange: false
+        private: false
+        send_notifications: false
+        title: The best ones
+      '154889297':
+        accept_commands: true
+        allow_users: false
+        commands:
+          /abort: true
+          /con: true
+          /ctrl: true
+          /dontshutup: true
+          /files: true
+          /help: false
+          /print: true
+          /settings: true
+          /shutup: true
+          /status: true
+          /sys: true
+          /test: false
+          /togglepause: true
+          /tune: true
+          /upload: true
+          /user: true
+          'No': false
+          'Yes': false
+        id: '154889297'
+        image: /plugin/telegram/img/user/pic154889297.jpg?1511715622716
+        new: false
+        newUsr: false
+        notifications:
+          PrintDone: true
+          PrintFailed: true
+          PrintPaused: true
+          PrintResumed: true
+          PrintStarted: true
+          PrinterShutdown: true
+          PrinterStart: true
+          StatusNotPrinting: false
+          StatusPrinting: false
+          ZChange: false
+        private: true
+        send_notifications: true
+        title: Skyler - Ogden - @Cupric
+    token: 321960493:AAH8qAhIbTuF5JSJm-nQy_hC9IZ-D4UTYDk
+printerParameters: {}
+printerProfiles:
+  defaultProfile:
+    axes:
+      e:
+        inverted: false
+        speed: 300
+      x:
+        inverted: false
+        speed: 18000
+      y:
+        inverted: false
+        speed: 18000
+      z:
+        inverted: false
+        speed: 18000
+    color: blue
+    extruder:
+      count: 2
+      nozzleDiameter: 0.5
+      offsets:
+      - - 0.0
+        - 0.0
+      - - 0.0
+        - 0.0
+    heatedBed: true
+    id: _default
+    model: Delta
+    name: Rostock
+    volume:
+      depth: 240.0
+      formFactor: circular
+      height: 240.0
+      origin: center
+      width: 240.0
+serial:
+  autoconnect: true
+  baudrate: 115200
+  port: /dev/ttyACM0
+  timeout: {}
+server:
+  commands:
+    serverRestartCommand: sudo service octoprint restart
+    systemRestartCommand: sudo reboot
+    systemShutdownCommand: sudo shutdown now
+  firstRun: false
+  onlineCheck:
+    enabled: true
+  secretKey: 3p1YVA60pcMlTPhRH5xuo9NK1UbtwsGd
+  seenWizards:
+    corewizard: 1
+system:
+  actions:
+  - action: update
+    command: sudo apt-get -y update && sudo apt-get -y upgrade
+    confirm: You are about to update Raspbian.
+    name: Update Raspbian
+temperature:
+  profiles:
+  - bed: 100
+    extruder: '230'
+    name: ABS
+  - bed: 60
+    extruder: 180
+    name: PLA
+  - bed: '115'
+    extruder: '240'
+    name: ABS Hot
+webcam:
+  ffmpeg: /usr/bin/avconv
+  snapshot: http://127.0.0.1:8080/?action=snapshot
+  stream: /webcam/?action=stream
+  timelapse:
+    fps: 25
+    options:
+      capturePostRoll: false
+      interval: 10
+    postRoll: 4
+    type: timed
+  watermark: false

@@ -1,0 +1,4 @@
+G91; Use relative coordinates
+G1 Z-5 F6000 ; Move back to zprint
+G1 E5 F2400; Prime extruder
+G90; Use absolute coordinates 

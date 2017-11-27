@@ -1,0 +1,5 @@
+G92 E0
+G91; Use relative coordinates
+G1 E-4 F2400; Retract 4mm of material
+G1 Z15 F6000 ; Move up 5mm
+G28; Home

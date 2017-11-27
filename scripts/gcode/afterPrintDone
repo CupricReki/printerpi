@@ -1,0 +1,11 @@
+G91; Use relative coordinates
+G1 E-5 F2400; Retract 5mm of material
+G1 Z15 F6000 ; Move up 5mm
+G28; Home
+;M84; disable motors
+M140 S0; disable all heaters
+M104 S0
+M108 S0
+M106 S0; disable fan
+;M81; disable power supply
+;M1100; Disable power supply after cooldown
