@@ -124,7 +124,7 @@ controls:
   - commands:
     - G28
     - G1 Z50 F18000
-    - G1 Y-137 F8000
+    - G1 Y-120 F8000
     name: To Service Position
     type: commands
   layout: vertical
